@@ -10,6 +10,7 @@
 <script>
 import Trainings from './components/Trainings.vue'
 import Workout from './components/Workout.vue'
+import mixin from './mixin.js'
 
  export default {
    data () {
@@ -20,6 +21,10 @@ import Workout from './components/Workout.vue'
         'Banana'
       ] 
      } 
+   },
+   mixins: [mixin],
+   created () {
+      console.log('created from comp')
    },
    methods: {
      showMsg (msg) {

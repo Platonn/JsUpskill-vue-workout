@@ -4,8 +4,8 @@
     <div class="row" style="margin-bottom: 20px;">
       <div class="col-xs-9">
         <div class="progress">
-          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-            60%
+          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" :style="{width: progress + '%'}">
+            {{ progress }}
           </div>
         </div>
       </div>
@@ -47,7 +47,8 @@
         isStarted: false,
         timer: null,
         minutes: 0,
-        seconds: 0
+        seconds: 0,
+        currentWeight: 0
       }
     },
     watch: {
@@ -65,12 +66,25 @@
         }
       }
     },
+    computed: {
+      progress () {
+        if (this.weight !== 0) {
+          return parseInt(this.currentWeight / this.weight * 100)
+        }
+        return 0
+      }
+    },
     created () {
       eventBus.$on('trainingWasStarted', (data) => {
         this.training = data.training
         this.time = data.time
         this.weight = data.weight
         this.isStarted = true
+
+        setInterval(() => {
+            this.currentWeight += 20
+          }, 2000)
+
       })
     }
   }
