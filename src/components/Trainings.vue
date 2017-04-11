@@ -4,7 +4,10 @@
       :training="training"
       @trainingWasChosen="chooseTraining($event)"
     ></SingleTraining>
-    <TrainingModal v-if="showModal"></TrainingModal>
+    <TrainingModal 
+      v-if="showModal"
+      :training="chosenTraining"
+    ></TrainingModal>
   </div>
 </template>
 

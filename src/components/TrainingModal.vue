@@ -5,14 +5,16 @@
         <h1>Start</h1>
         <div class="col-xs-8 col-xs-offset-2">
           <div class="panel panel-primary">
-            <div class="panel-heading">Zestaw 1</div>
+            <div class="panel-heading">{{ training.name }}</div>
             <div class="panel-body">
-              <p>Opis</p>
+              <p>{{ training.description }}</p>
             </div>
             <div class="list-group">
-              <li class="list-group-item">Cwiczenie 1</li>
-              <li class="list-group-item">Cwiczenie 2</li>
-              <li class="list-group-item">Cwiczenie 3</li>
+              <li v-for="exercise in training.exercises"
+                  class="list-group-item">
+                  {{ exercise.name }}
+              </li>
+              
             </div>
             <button class="btn btn-primary center-block" style="margin-top: 20px; margin-bottom: 20px;">Edytuj</button>
           </div>
@@ -36,3 +38,11 @@
     </div>
   </div>
 </template>
+
+<script>
+  export default {
+    props: {
+      'training': Object
+    }
+  }
+</script>
