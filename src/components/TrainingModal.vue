@@ -1,5 +1,5 @@
 <template>
-  <div class="modal fade bs-example-modal-sm in" style="display: none;" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal fade bs-example-modal-sm in" style="display: block;" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
     <div class="modal-dialog modal-md" role="document">
       <div class="modal-content" style="padding: 10px; overflow: hidden;">
         <h1>Start</h1>
