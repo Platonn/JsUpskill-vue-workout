@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
       <div class="containter">
-        <trainings></trainings>
+        <appTrainings></appTrainings>
       </div>
   </div>
 </template>
@@ -25,7 +25,7 @@ import Trainings from './components/Trainings.vue'
      }
    },
    components: {
-    trainings: Trainings
+    appTrainings: Trainings
    }
  }  
 </script>
