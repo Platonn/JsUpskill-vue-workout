@@ -15,6 +15,7 @@
   import SingleTraining from './SingleTraining.vue'
   import TrainingModal from './TrainingModal.vue'
   import mock from '../mock.js'
+  import { eventBus } from '../main.js'
 
   export default {
     data () {
@@ -27,6 +28,11 @@
     components: {
       SingleTraining,
       TrainingModal
+    },
+    created () {
+      eventBus.$on('closeModalFromEB', () => {
+        this.showModal = false
+      })
     },
     methods: {
       chooseTraining (data) {

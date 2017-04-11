@@ -23,16 +23,28 @@
             <h3>Cele</h3>
             <div class="form-group">
               <label class="control-label">Czas</label>
-              <input class="form-control" type="text" placeholder="Podaj w minutach">
+              <input class="form-control" 
+                      type="text" 
+                      placeholder="Podaj w minutach"
+                      v-model="time">
+            </div>
+            <div>
+              <p>{{ time }}</p>
             </div>
             <div class="form-group">
               <label class="control-label">Ciężar</label>
-              <input class="form-control" type="number" placeholder="Podaj ilość w kg">
+              <input class="form-control" 
+                      type="number" 
+                      placeholder="Podaj ilość w kg"
+                      v-model="weight"
+                      >
             </div>
           </form>
         </div>
         <div class="col-xs-12">
-          <button class="btn btn-primary center-block">Rozpocznij trening</button>
+          <button class="btn btn-primary center-block"
+                  @click="startTraining"
+          >Rozpocznij trening</button>
         </div>
       </div>
     </div>
@@ -40,9 +52,27 @@
 </template>
 
 <script>
+  import { eventBus } from '../main.js'
+
   export default {
     props: {
       'training': Object
+    },
+    data () {
+      return {
+        time: '',
+        weight: 0
+      }
+    },
+    methods: {
+      startTraining () {
+        eventBus.$emit('trainingWasStarted', {
+          training: this.training,
+          time: this.time,
+          weight: this.weight
+        })
+        eventBus.closeTrainingModal()
+      }
     }
   }
 </script>

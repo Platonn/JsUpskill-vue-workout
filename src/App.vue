@@ -2,12 +2,14 @@
   <div class="wrapper">
       <div class="containter">
         <appTrainings></appTrainings>
+        <workout></workout>
       </div>
   </div>
 </template>
 
 <script>
 import Trainings from './components/Trainings.vue'
+import Workout from './components/Workout.vue'
 
  export default {
    data () {
@@ -25,7 +27,8 @@ import Trainings from './components/Trainings.vue'
      }
    },
    components: {
-    appTrainings: Trainings
+    appTrainings: Trainings,
+    Workout
    }
  }  
 </script>
