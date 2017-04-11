@@ -12,21 +12,20 @@
       <div class="col-xs-3 text-center">
         <div class="col-xs-6">
           <label>Minuty</label>
-          <div>20</div>
+          <div>{{ minutes }}</div>
         </div>
         <div class="col-xs-6">
           <label>Sekundy</label>
-          <div>34</div>
+          <div>{{ seconds }}</div>
         </div>
       </div>
     </div>
     <div class="col-xs-8 col-xs-offset-2">
       <div class="panel panel-primary">
-        <div class="panel-heading">Zestaw 1</div>
+        <div class="panel-heading">{{ training.name }}</div>
         <div class="list-group">
-          <li class="list-group-item">Cwiczenie 1</li>
-          <li class="list-group-item">Cwiczenie 2</li>
-          <li class="list-group-item">Cwiczenie 3</li>
+          <li v-for="exercise in training.exercises" 
+              class="list-group-item">{{ exercise.name }}</li>
         </div>
       </div>
       <div class="col-xs-12">
@@ -44,7 +43,26 @@
       return {
         training: {},
         time: 0,
-        weight: 0
+        weight: 0,
+        isStarted: false,
+        timer: null,
+        minutes: 0,
+        seconds: 0
+      }
+    },
+    watch: {
+      isStarted () {
+        if (this.isStarted) {
+          this.timer = setInterval(() => {
+            this.seconds++
+            if (this.seconds === 60) {
+              this.seconds = 0
+              this.minutes++
+            }
+          }, 1000)
+        } else {
+          clearInterval(this.timer)
+        }
       }
     },
     created () {
@@ -52,6 +70,7 @@
         this.training = data.training
         this.time = data.time
         this.weight = data.weight
+        this.isStarted = true
       })
     }
   }
