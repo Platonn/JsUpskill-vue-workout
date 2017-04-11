@@ -4,10 +4,12 @@
       :training="training"
       @trainingWasChosen="chooseTraining($event)"
     ></SingleTraining>
-    <TrainingModal 
-      v-if="showModal"
-      :training="chosenTraining"
-    ></TrainingModal>
+    <transition name="showModal" type="animation">
+      <TrainingModal 
+        v-if="showModal"
+        :training="chosenTraining"
+      ></TrainingModal>
+    </transition>
   </div>
 </template>
 
@@ -42,3 +44,26 @@
     }
   }
 </script>
+
+<style>
+  .showModal-enter {
+    opacity: 0;
+  }
+  .showModal-enter-active {
+    animation: slide-in 1s ease-out forwards;
+    transition: opacity .5s;
+  }
+  .showModal-enter-to {
+    opacity: 1
+  }
+
+  @keyframes slide-in {
+    from {
+      transform: translateY(40px)
+    }
+    to {
+      transform: translateY(0)
+    }
+  }
+
+</style>
